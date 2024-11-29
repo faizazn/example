@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/style.css">
+    <title>Tailwind Project</title>
+</head>
+ <style>
+  /*home section*/
+/* Keyframes for fade-in-left animation */
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Utility classes */
+[data-animation="fade-in-left"] {
+  animation: fade-in-left 1s ease-out forwards;
+}
+/*end home section*/
+  html {
+  scroll-behavior: smooth;
+}
+  .swiper-button-prev:after,
+  .swiper-rtl .swiper-button-next:after {
+      content: '' !important;
+  }
+  .swiper-button-next:after,
+  .swiper-rtl .swiper-button-prev:after {
+      content: '' !important;
+  }
+
+.fa-thumbs-up, .fa-thumbs-down {
+  transition: transform 0.3s ease;
+}
+.fa-thumbs-up:hover, .fa-thumbs-down:hover {
+  transform: scale(1.2);
+}
+
+/* Grid container for menu cards */
+.menu-card-container {
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 16px; /* Space between cards */
+    width: 100%;
+    margin: auto; /* Center the container */
+    padding: 16px; /* Padding around the grid */
+}
+
+/* Individual card styling */
+.menu-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    padding: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure images are responsive */
+.menu-card img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 16px;
+}
+
+/* Hover effect for cards */
+.menu-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Hidden cards: keep layout intact but visually hidden */
+.menu-card.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Responsive: For smaller screens, stack cards into 1 or 2 per row */
+@media (max-width: 1024px) {
+    .menu-card-container {
+        grid-template-columns: repeat(2, 1fr); /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-card-container {
+        grid-template-columns: 1fr; /* One card per row on small screens */
+    }
+}
+
+ </style>
+<body>
+    <nav class="mx-auto p-6 bg-sky-950 w-full fixed z-50">
+        <div class="flex item-center sm:hidden justify-between mx-10">
+           <div>
+              <img src="dist/images/logo.png" alt="logo website" width="50px">
+           </div>
+           <div class="md:flex space-x-6 items-center">
+             <a href="#home" class="text-white hover:text-orange-500">Home</a>
+             <a href="#about" class="text-white hover:text-orange-500">About</a>
+             <a href="#services" class="text-white hover:text-orange-500">Services</a>
+             <a href="#team" class="text-white hover:text-orange-500">Team</a>
+             <a href="#menu" class="text-white hover:text-orange-500">Menu</a>
+             <a href="#contact" class="text-white hover:text-orange-500">Contact</a>
+             <a href="#booking" class="bg-orange-500 text-white hover:bg-transparent hover:border hover:border-orange-500 py-2 px-6 rounded-full">Book a Table</a>
+           </div>
+           <button id="mobile-btn" class="md:hidden">
+             <i class="ri-menu-line text-2xl text-white"></i>
+           </button>
+        </div>
+        <div class="md:hidden">
+            <div id="mobile-menu" class="flex flex-col items-center  py-8 left-6 right-8 space-y-4 font-bold drop-shadow-lg border-gray-300">
+              <a href="" class="text-white hover:text-slate-500">Home</a>
+              <a href="" class="text-white hover:text-slate-500">About</a>
+              <a href="" class="text-white hover:text-slate-500">Services</a>
+              <a href="" class="text-white hover:text-slate-500">Team</a>
+              <a href="" class="text-white hover:text-slate-500">Menu</a>
+              <a href="" class="text-white hover:text-slate-500">Contact</a>
+              <a href="" class="bg-orange-500 text-white hover:bg-transparent hover:border hover:border-orange-500 py-2 px-6 rounded-full">Book a Table</a>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+    <section id="home" class="bg-gradient-to-r from-sky-950 to-slate-900" data-animate="true">
+      <div class="container flex flex-col-reverse mx-auto px-6 space-x-6 md:flex-row bg-[url('dist/images/home.png')] bg-cover bg-center">
+        <!-- Text Section -->
+        <div class="text flex flex-col justify-center space-y-5 py-8 text-center md:text-left md:w-1/2 text-slate-50 opacity-0 transition-transform transform translate-x-[-50px]" data-animation="fade-in-left">
+          <h1 class="font-bold text-3xl md:text-5xl font-mono">
+            Enjoy Our Delicious Meal
+          </h1>
+          <p class="leading-7 font-mono">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+            fuga amet inventore atque rerum sit similique illum, nihil minus? Natus
+            sapiente doloribus molestias impedit quis id non possimus modi.
+            Corporis. Corporis suscipit itaque accusantium temporibus, animi
+            commodi amet, nam doloremque laudantium, harum id ipsa sunt.
+          </p>
+          <a href="#" class="font-mono py-2 px-6 rounded-full self-center md:self-start bg-orange-500 text-white hover:bg-transparent hover:border hover:border-orange-500">
+            Book a Table
+          </a>
+        </div>
+    
+        <!-- Image Section -->
+        <div class="image md:w-1/2 animate-spin">
+          <img src="dist/images/home.png" alt="" />
+        </div>
+      </div>
+    </section>
+    
+
+    
+    <section id="about" class="my-10">
+      <div class="container flex flex-col-reverse mx-auto px-6 space-x-6 md:flex-row bg-[url('dist/images/home.png')] bg-cover bg-center">
+        <div class="image grid grid-cols-2 gap-4 md:w-1/2">
+          <!-- Add your four gallery images -->
+          <img src="dist/images/about1.webp" alt="Gallery Image 1" class="w-full h-auto rounded-md">
+          <img src="dist/images/about2.webp" alt="Gallery Image 2" class="w-full h-auto rounded-md">
+          <img src="dist/images/about3.webp" alt="Gallery Image 3" class="w-full h-auto rounded-md">
+          <img src="dist/images/about5.jpg" alt="Gallery Image 4" class="w-full h-auto rounded-md">
+        </div>
+        <div class="text flex flex-col justify-center space-y-5 py-8 text-center md:text-left md:w-1/2">
+          <div class="flex items-center space-x-4">
+            <!-- Vertical line -->
+            <div class="w-1 h-10 bg-orange-500"></div>
+            <h1 class="font-bold text-3xl md:text-5xl font-mono text-slate-900 italic">About Us</h1>
+          </div>
+          <p class="leading-7 font-mono text-slate-700">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium fuga amet inventore atque rerum sit similique illum, nihil minus? Natus sapiente doloribus molestias impedit quis id non possimus modi. Corporis.
+            Corporis suscipit itaque accusantium temporibus, animi commodi amet, nam doloremque laudantium, harum id ipsa sunt. nam doloremque laudantium, harum id ipsa sunt. nam doloremque laudantium, harum id ipsa sunt. nam doloremque laudantium, harum id ipsa sunt. nam doloremque laudantium, harum id ipsa sunt.
+          </p>
+          <a href="" class="font-mono py-2 px-6 rounded-full self-center md:self-start bg-orange-500 text-white hover:bg-slate-900">Read More</a>
+        </div>
+      </div>
+    </section>
+    <section id="services">
+      <div class="container px-5 mx-auto my-32 text-center">
+        <div class="flex items-center justify-center space-x-4">
+          <hr class="flex-grow border-t-2 border-orange-500">
+          <h2 class="font-bold text-4xl text-slate-900 italic">Our Services</h2>
+          <hr class="flex-grow border-t-2 border-orange-500">
+        </div>
+        <p class="mt-8 max-w-5xl mx-auto text-center">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam non quos modi expedita praesentium fuga adipisci dicta labore illo beatae id et, sequi rerum? Accusantium, odio? Dicta praesentium facere nulla.
+        </p>
+        <div class="mt-10 flex flex-col space-x-0 space-y-5 md:space-x-5 md:flex-row md:space-y-0">
+          <div class="md:w-1/4 flex flex-col p-6 space-y-2 shadow-2xl border-b-4 border-orange-500 items-center">
+            <i class="fa-solid fa-user text-orange-500 text-5xl"></i>
+            <h5 class="font-bold text-lg text-slate-900">Master Chefs</h5>
+            <p class="leading-5 text-sm text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, ad.</p>
+          </div>
+          <div class="md:w-1/4 flex flex-col p-6 space-y-2 shadow-2xl border-b-4 border-orange-500 items-center">
+            <i class="fa-solid fa-bowl-food text-orange-500 text-5xl"></i>
+            <h5 class="font-bold text-lg text-slate-900">Quality Food</h5>
+            <p class="leading-5 text-sm text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, ad.</p>
+          </div>
+          <div class="md:w-1/4 flex flex-col p-6 space-y-2 shadow-2xl border-b-4 border-orange-500 items-center">
+            <i class="fa-solid fa-cart-arrow-down text-orange-500 text-5xl"></i>
+            <h5 class="font-bold text-lg text-slate-900">Online Order</h5>
+            <p class="leading-5 text-sm text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, ad.</p>
+          </div>
+          <div class="md:w-1/4 flex flex-col p-6 space-y-2 shadow-2xl border-b-4 border-orange-500 items-center">
+            <i class="fa-solid fa-headset text-orange-500 text-5xl"></i>
+            <h5 class="font-bold text-lg text-slate-900">24/7 Service</h5>
+            <p class="leading-5 text-sm text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, ad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="team">
+      <div class="container px-5 mx-auto my-32 text-center">
+        <div class="flex items-center justify-center space-x-4">
+          <hr class="flex-grow border-t-2 border-orange-500">
+          <h2 class="font-bold text-4xl text-slate-900 italic">Our Master Chefs</h2>
+          <hr class="flex-grow border-t-2 border-orange-500">
+        </div>
+        <p class="mt-8 max-w-5xl mx-auto">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam non quos modi expedita praesentium fuga adipisci dicta labore illo beatae id et, sequi rerum? Accusantium, odio? Dicta praesentium facere nulla.
+        </p>
+        <div class="mt-10 flex flex-col space-x-0 space-y-5 md:space-x-5 md:flex-row md:space-y-0">
+    
+          <!-- Team Member 1 -->
+          <div class="md:w-1/4 bg-slate-100 flex flex-col p-6 space-y-2 rounded-lg border border-slate-200 items-center">
+            <img src="./dist/images/team1.avif" alt="team image" class="w-36 h-36 rounded-full border-4 border-white shadow-md">
+            <h5 class="font-bold text-lg text-slate-900">Jims John</h5>
+            <p class="leading-5 text-sm text-slate-700">Head Chef</p>
+            <div class="flex space-x-3 mt-4">
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+    
+          <!-- Team Member 2 -->
+          <div class="md:w-1/4 bg-slate-100 flex flex-col p-6 space-y-2 rounded-lg border border-slate-200 items-center">
+            <img src="./dist/images/team2.avif" alt="team image" class="w-36 h-36 rounded-full border-4 border-white shadow-md">
+            <h5 class="font-bold text-lg text-slate-900">Alexa Grover</h5>
+            <p class="leading-5 text-sm text-slate-700">Pastry Chef</p>
+            <div class="flex space-x-3 mt-4">
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+    
+          <!-- Team Member 3 -->
+          <div class="md:w-1/4 bg-slate-100 flex flex-col p-6 space-y-2 rounded-lg border border-slate-200 items-center">
+            <img src="./dist/images/team3.jpg" alt="team image" class="w-36 h-36 rounded-full border-4 border-white shadow-md">
+            <h5 class="font-bold text-lg text-slate-900">Adam Sandler</h5>
+            <p class="leading-5 text-sm text-slate-700">Sous Chef</p>
+            <div class="flex space-x-3 mt-4">
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+    
+          <!-- Team Member 4 -->
+          <div class="md:w-1/4 bg-slate-100 flex flex-col p-6 space-y-2 rounded-lg border border-slate-200 items-center">
+            <img src="./dist/images/team4.jfif" alt="team image" class="w-36 h-36 rounded-full border-4 border-white shadow-md">
+            <h5 class="font-bold text-lg text-slate-900">Alex Simon</h5>
+            <p class="leading-5 text-sm text-slate-700">Grill Chef</p>
+            <div class="flex space-x-3 mt-4">
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full text-gray-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </section>
+    <section id="booking" >
+      <!-- Title -->
+      <div class="text-center space-x-4 mb-12 flex items-center justify-center mx-4 md:mx-36">
+          <img src="dist/images/art-1.png" alt="">
+          <h2 class="font-bold md:text-4xl text-3xl text-slate-900 italic mx-4">Booking Now</h2>
+          <img src="dist/images/art-1.png" alt="">
+      </div>
+  
+      <!-- Content -->
+      <div class="container flex flex-col space-y-3 mx-auto px-6 space-x-6 md:flex-row bg-[url('dist/images/home.png')] bg-cover bg-center">
+          <!-- Image Section -->
+          <div class="image md:w-1/2 flex items-center justify-end">
+              <img src="dist/images/book-img.avif" class="rounded max-h-96 w-5/6" alt="">
+          </div>
+  
+          <!-- Form Section -->
+          <div class="text flex flex-col space-y-5 text-center md:text-left md:w-1/2">
+              <div class="flex items-center space-x-4">
+                  <!-- Vertical line -->
+                  <div class="w-1 h-10 bg-orange-500"></div>
+                  <h1 class="font-bold text-2xl md:text-3xl text-slate-900">Reservation Online</h1>
+              </div>
+              <form action="" class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <!-- Full Name and Email -->
+                  <input type="text" name="" placeholder="Your Full Name" class="border border-slate-800 p-3 m-1 w-full">
+                  <input type="email" name="" placeholder="Your Email" class="border border-slate-800 p-3 m-1 w-full">
+                  <!-- Phone Number -->
+                  <input type="number" name="" placeholder="Your Phone Number" class="border border-slate-800 p-3 m-1 w-full md:col-span-2">
+                  <!-- Date -->
+                  <input type="date" name="" class="border border-slate-800 p-3 m-1 w-full">
+                  <!-- Time -->
+                  <input type="time" name="" class="border border-slate-800 p-3 m-1 w-full">
+                  <!-- Number of People -->
+                  <input type="number" name="" placeholder="How Many People" class="border border-slate-800 p-3 m-1 w-full md:col-span-2">
+                  <!-- Submit Button -->
+                  <a href="" class="font-mono w-1/4 p-3 px-6 m-1 mt-4 self-center md:self-start bg-orange-500 text-white hover:bg-slate-900 md:col-span-2">Submit</a>
+              </form>
+          </div>
+      </div>
+  </section>
+  
+    <section class="py-8 mb-8">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-center space-x-4">
+            <hr class="flex-grow border-t-2 border-orange-500">
+            <h2 class="font-bold text-4xl text-slate-900 italic">What Our Client Say</h2>
+            <hr class="flex-grow border-t-2 border-orange-500">
+          </div>
+          <br>
+          <div class="mb-14 flex flex-col justify-center items-center sm:flex-row sm:items-center sm:justify-between max-sm:gap-8">
+              <!-- Slider controls--> 
+              <div class="flex items-center gap-8">
+                <!-- Left Button -->
+                <button id="slider-button-left"
+                    class="swiper-button-prev group flex justify-center items-center w-12 h-12 border-2 border-orange-500 rounded-full transition-all duration-300 hover:bg-orange-500 relative">
+                    <svg class="h-6 w-6 text-orange-500 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <!-- Right Button -->
+                <button id="slider-button-right"
+                    class="swiper-button-next group flex justify-center items-center w-12 h-12 border-2 border-orange-500 rounded-full transition-all duration-300 hover:bg-orange-500 relative">
+                    <svg class="h-6 w-6 text-orange-500 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            
+          </div>
+          <!--Slider wrapper-->
+          <div class="lg:flex grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-8 swiper mySwiper">
+              <div class="swiper-wrapper">
+                  <div
+                      class="swiper-slide group bg-white border border-solid h-auto border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800 slide-active:border-slate-800">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9 group-hover:text-gray-800">
+                          Pagedone is simply the best tool of investment in the market right now.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696229969.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Jane D</h5>
+                              <span class="text-sm leading-6 text-gray-500">CEO </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div
+                      class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800 slide-active:border-slate-800">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9  group-hover:text-gray-800">
+                          I was hesitant to try pagedone at first, but I'm so glad I did - it's exceeded all of my
+                          expectations.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696229994.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Harsh P.</h5>
+                              <span class="text-sm leading-6 text-gray-500">Product Designer</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div
+                      class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800 ">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9 group-hover:text-gray-800 ">
+                          Pagedone stands out as the most user-friendly and effective solution I've ever used.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696230027.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500 group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Alex K.</h5>
+                              <span class="text-sm leading-6 text-gray-500">Design Lead</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div
+                      class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800 slide-active:border-slate-800">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9 group-hover:text-gray-800">
+                          Pagedone is simply the best tool of investment in the market right now.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696229969.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Jane D</h5>
+                              <span class="text-sm leading-6 text-gray-500">CEO </span>
+                          </div>
+                      </div>
+                  </div>
+                  <div
+                      class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800 ">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9  group-hover:text-gray-800">
+                          I was hesitant to try pagedone at first, but I'm so glad I did - it's exceeded all of my
+                          expectations.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696229994.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Harsh P.</h5>
+                              <span class="text-sm leading-6 text-gray-500">Product Designer</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div
+                      class="swiper-slide group bg-white border border-solid border-gray-300 rounded-2xl p-6 transition-all duration-500 w-full hover:border-slate-800">
+                      <div
+                          class="flex items-center mb-9 gap-2 text-amber-500 transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                          <svg class="w-5 h-5" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                  d="M8.10326 1.31699C8.47008 0.57374 9.52992 0.57374 9.89674 1.31699L11.7063 4.98347C11.8519 5.27862 12.1335 5.48319 12.4592 5.53051L16.5054 6.11846C17.3256 6.23765 17.6531 7.24562 17.0596 7.82416L14.1318 10.6781C13.8961 10.9079 13.7885 11.2389 13.8442 11.5632L14.5353 15.5931C14.6754 16.41 13.818 17.033 13.0844 16.6473L9.46534 14.7446C9.17402 14.5915 8.82598 14.5915 8.53466 14.7446L4.91562 16.6473C4.18199 17.033 3.32456 16.41 3.46467 15.5931L4.15585 11.5632C4.21148 11.2389 4.10393 10.9079 3.86825 10.6781L0.940384 7.82416C0.346867 7.24562 0.674378 6.23765 1.4946 6.11846L5.54081 5.53051C5.86652 5.48319 6.14808 5.27862 6.29374 4.98347L8.10326 1.31699Z"
+                                  fill="currentColor" />
+                          </svg>
+                      </div>
+                      <p
+                          class="text-lg text-gray-500 leading-8 h-24 transition-all duration-500 mb-9 group-hover:text-gray-800 ">
+                          Pagedone stands out as the most user-friendly and effective solution I've ever used.
+                      </p>
+                      <div class="flex items-center gap-5">
+                          <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1696230027.png" alt="avatar" />
+                          <div class="grid gap-1">
+                              <h5
+                                  class="text-gray-900 font-medium transition-all duration-500  group-hover:text-slate-800 swiper-slide-active:text-slate-800">
+                                  Alex K.</h5>
+                              <span class="text-sm leading-6 text-gray-500">Design Lead</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <section id="menu" class="flex justify-center items-center flex-col space-y-8">
+    <!-- Filter Buttons -->
+    <div class="w-full max-w-xl rounded-full p-5 shadow-custom-inner">
+      <div class="filter-buttons flex flex-row gap-8 justify-center">
+        <div class="flex flex-row gap-1">
+          <img src="dist/images/menu-1.png" width="40px" height="40px" alt=""><button onclick="filterCards('all')">All</button>
+        </div>
+        <div class="flex flex-row gap-1">
+          <img src="dist/images/menu-2.png" width="40px" height="40px" alt=""><button onclick="filterCards('breakfast')">Breakfast</button>
+        </div>
+        <div class="flex flex-row gap-1">
+          <img src="dist/images/menu-3.png" width="40px" height="40px" alt=""><button onclick="filterCards('lunch')">Lunch</button>
+        </div>
+        <div class="flex flex-row gap-1">
+          <img src="dist/images/menu-4.png" width="40px" height="40px" alt=""><button onclick="filterCards('dinner')">Dinner</button>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <!-- Menu Cards -->
+    <div class="menu-card-container container mt-28 grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-6xl px-4">
+        <div class="menu-card flex flex-col p-6 mb-14 space-y-4 rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="breakfast">
+          <img src="./dist/images/menu1.jpg" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">              
+          <!-- Name and Calories -->
+          <h5 class="font-bold text-2xl text-gray-800">𝓔𝓰𝓰 & 𝓣𝓸𝓶𝓪𝓽𝓸</h5>
+          <hr class="w-full border-t border-gray-300">
+            <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Fresh Eggs, Tomatoes, Olive Oil, Herbs & Spices</span></h6>
+      </div>
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">120 Calories</h6>
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $15.99
+      </div>
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">125</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">15</span>
+        </div>
+      </div>
+        </div>
+        <div class="menu-card mb-14 flex flex-col p-6 space-y-4 rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="lunch">
+                   <!-- Image -->
+      <img src="./dist/images/menu3.jpg" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓜𝓸𝓻𝓸𝓬𝓬𝓪𝓷 𝓑𝓮𝓮𝓯 𝓢𝓽𝓮𝔀</h5>
+      <hr class="w-full border-t border-gray-300">  
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Oil, Onion, Ginger, Cloves, Tomato</span></h6>
+      </div>
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">80 Calories</h6>
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $20
+      </div>
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">200</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">2</span>
+        </div>
+      </div>
+        </div>
+        <div class="menu-card mb-14 flex flex-col p-6 space-y-4 rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="breakfast">
+                    <!-- Image -->
+      <img src="./dist/images/menu2.jfif" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">     
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓹𝓪𝓷𝓬𝓪𝓴𝓮𝓼</h5>
+      <hr class="w-full border-t border-gray-300">     
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Fresh Eggs, Tomatoes, Olive Oil, Herbs & Spices</span></h6>
+      </div> 
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">120 Calories</h6>
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $15.99
+      </div>
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">143</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card mb-14 flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="dinner">
+      <!-- Image -->
+<img src="./dist/images/menu4.jpg" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">     
+<!-- Name and Calories -->
+<h5 class="font-bold text-2xl text-gray-800">𝓜𝓸𝓻𝓸𝓬𝓬𝓪𝓷 𝓱𝓪𝓻𝓲𝓻𝓪</h5>
+<hr class="w-full border-t border-gray-300">       
+<!-- Ingredients -->
+<div class="text-center">
+<h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Beef, Oil, Tomatoes, Chickpeas</span></h6>         
+</div>     
+<!-- Calories -->
+<h6 class="font-semibold text-gray-700">20 Calories</h6>    
+<!-- Price -->
+<div class="text-xl font-bold text-orange-500 mt-2">
+$23
+</div>    
+<!-- Likes and Dislikes -->
+<div class="flex justify-between space-x-10 items-center mt-4 w-full">
+<!-- Likes -->
+<div class="flex items-center space-x-2">
+<i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+<span class="text-gray-700 font-semibold">125</span>
+</div>
+<!-- Dislikes -->
+<div class="flex items-center space-x-2">
+<i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+<span class="text-gray-700 font-semibold">0</span>
+</div>
+</div>
+    </div>
+    <div class="menu-card mb-14 breakfast flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="breakfast">
+      <!-- Image -->
+      <img src="./dist/images/menu5.jfif" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+    
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓜𝓸𝓻𝓸𝓬𝓬𝓪𝓷 𝓶𝓼𝓮𝓶𝓮𝓷</h5>
+      <hr class="w-full border-t border-gray-300">
+      
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Flour, Semolina, Salt, Dry yeast</span></h6>
+        
+      </div>
+    
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">60 Calories</h6>
+    
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $10
+      </div>
+    
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">144</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">1</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card mb-14 dinner flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="dinner">
+      <!-- Image -->
+      <img src="./dist/images/menu6.jpg" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+    
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓥𝓮𝓰𝓮𝓽𝓪𝓫𝓵𝓮 𝓢𝓸𝓾𝓹</h5>
+      <hr class="w-full border-t border-gray-300">
+      
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Olive oil, Celery, Carrot, Onion, Tomato</span></h6>
+        
+      </div>
+    
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">110 Calories</h6>
+    
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $30
+      </div>
+    
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">143</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card mb-14 flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="lunch">
+      <!-- Image -->
+      <img src="./dist/images/menu7.jfif" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+    
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓒𝓸𝓾𝓼𝓬𝓸𝓾𝓼</h5>
+      <hr class="w-full border-t border-gray-300">
+      
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Olive oil, couscous, Lamb shank or shoulder, Water</span></h6>
+      </div>
+    
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">90 Calories</h6>
+    
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $26
+      </div>
+    
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">125</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card mb-14 flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="lunch">
+      <!-- Image -->
+      <img src="./dist/images/menu8.jpg" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+    
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800">𝓢𝓮𝓪𝓯𝓸𝓸𝓭 𝓑𝓪𝓼𝓽𝓲𝓵𝓵𝓪</h5>
+      <hr class="w-full border-t border-gray-300">
+      
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Shirmp, Calamari, Swordfish, Butter, Salt, Pepper</span></h6>
+        
+      </div>
+    
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">90 Calories</h6>
+    
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $50
+      </div>
+    
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">144</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">1</span>
+        </div>
+      </div>
+    </div>
+    <div class="menu-card mb-14 flex flex-col p-6 space-y-4  rounded-lg border h-auto border-gray-200 items-center bg-white shadow-custom-inner" data-category="dinner">
+      <!-- Image -->
+      <img src="./dist/images/menu9.jfif" alt="Egg & Tomato" class="w-36 h-36 rounded-full border-4 border-white shadow-md -mt-20">
+    
+      <!-- Name and Calories -->
+      <h5 class="font-bold text-2xl text-gray-800 text-center">𝓜𝓸𝓻𝓸𝓬𝓬𝓪𝓷 𝓜𝓪𝓵𝓵𝓸𝔀 𝓢𝓪𝓵𝓪𝓭</h5>
+      <hr class="w-full border-t border-gray-300">
+      
+      <!-- Ingredients -->
+      <div class="text-center">
+        <h6 class="font-semibold text-gray-700">Ingredients: <span class="text-gray-600 font-normal">Olive oil, Mallow leaves, Parsley, Cloves, Paprika</span></h6>
+        
+      </div>
+    
+      <!-- Calories -->
+      <h6 class="font-semibold text-gray-700">130 Calories</h6>
+    
+      <!-- Price -->
+      <div class="text-xl font-bold text-orange-500 mt-2">
+        $25
+      </div>
+    
+      <!-- Likes and Dislikes -->
+      <div class="flex justify-between space-x-10 items-center mt-4 w-full">
+        <!-- Likes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-up text-green-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">143</span>
+        </div>
+        <!-- Dislikes -->
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-thumbs-down text-red-500 text-xl hover:scale-110 transition-transform"></i>
+          <span class="text-gray-700 font-semibold">0</span>
+        </div>
+      </div>
+    </div>
+    </div>
+      
+       
+    </div>
+</section>
+  <section id="contact">
+    <!-- Title -->
+    <div class="text-center space-x-4 mb-10 flex items-center justify-center mx-4 md:mx-36">
+        <div class="h-[2px] bg-orange-500 flex-1"></div>
+        <h2 class="font-bold md:text-4xl text-3xl text-slate-900 italic mx-4">Contact Us</h2>
+        <div class="h-[2px] bg-orange-500 flex-1"></div>
+    </div>
+    
+
+    <!-- Content -->
+    <div class="container flex flex-col space-y-3 mx-auto px-6 space-x-6 md:flex-row bg-[url('dist/images/home.png')] bg-cover bg-center">
+        <div class="image md:w-1/2">
+            <img src="dist/images/contact.jpg" class="rounded" alt="">
+        </div>
+        <div class="text flex flex-col space-y-5 text-center md:text-left md:w-1/2">
+            <form action="">
+                <input type="text" name="" placeholder="Your Name" class="border border-slate-800 p-3 m-1 w-full hover:rounded">
+                <input type="text" name="" placeholder="Your Email" class="border border-slate-800 p-3 m-1 w-full">
+                <input type="text" name="" placeholder="Subject" class="border border-slate-800 p-3 m-1 w-full">
+                <textarea name="" placeholder="Message" class="border p-3 border-slate-800 m-1 w-full" rows="5"></textarea><br><br>
+                <a href="" class="font-mono p-3 px-6 m-1 mt-2 self-center md:self-start bg-orange-500 text-white hover:bg-slate-900">Send Message</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="mx-auto p-16 bg-sky-950 w-full mt-3">
+  <div class="flex flex-col md:flex-row items-start justify-between mx-10 space-y-8 md:space-y-0">
+     <!-- Company Section -->
+     <div class="w-full md:w-1/4 text-white">
+        <h2 class="font-bold text-2xl italic text-orange-500 mb-2">Company</h2>
+        <ul class="space-y-2">
+           <li><a href="#" class="flex items-center no-underline hover:text-orange-500"><i class="fa-solid fa-circle-chevron-right mr-2"></i>About Us</a></li>
+           <li><a href="#" class="flex items-center no-underline hover:text-orange-500"><i class="fa-solid fa-circle-chevron-right mr-2"></i>Contact Us</a></li>
+           <li><a href="#" class="flex items-center no-underline hover:text-orange-500"><i class="fa-solid fa-circle-chevron-right mr-2"></i>Reservation</a></li>
+           <li><a href="#" class="flex items-center no-underline hover:text-orange-500"><i class="fa-solid fa-circle-chevron-right mr-2"></i>Privacy Policy</a></li>
+           <li><a href="#" class="flex items-center no-underline hover:text-orange-500"><i class="fa-solid fa-circle-chevron-right mr-2"></i>Terms & Condition</a></li>
+        </ul>
+     </div>
+     
+     <!-- Contact Section -->
+     <div class="w-full md:w-1/4 text-white space-y-3">
+        <h2 class="font-bold text-2xl italic text-orange-500 mb-2">Contact</h2>
+        <h2><i class="fa-solid fa-location-dot"></i> 123 Street, New York, USA</h2>
+        <h2><i class="fa-solid fa-phone"></i> +012 345 67890</h2>
+        <h2><i class="fa-solid fa-envelope"></i> info@example.com</h2>
+        <div class="flex space-x-2 mt-4">
+           <a href="#" class="flex items-center justify-center w-9 h-9 border border-white rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+              <i class="fab fa-facebook-f"></i>
+           </a>
+           <a href="#" class="flex items-center justify-center w-9 h-9 border border-white rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+              <i class="fab fa-twitter"></i>
+           </a>
+           <a href="#" class="flex items-center justify-center w-9 h-9 border border-white rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+              <i class="fab fa-instagram"></i>
+           </a>
+           <a href="#" class="flex items-center justify-center w-9 h-9 border border-white rounded-full hover:bg-orange-500 hover:text-white hover:border-orange-500 transition">
+              <i class="fab fa-youtube"></i>
+           </a>
+        </div>
+     </div>
+     
+     <!-- Opening Section -->
+     <div class="w-full md:w-1/4 text-white">
+        <h2 class="font-bold text-xl italic text-orange-500 mb-2">Opening</h2>
+        <h2>Monday - Saturday</h2>
+        <p>09AM - 09PM</p><br>
+        <h2>Sunday</h2>
+        <p>10AM - 08PM</p>
+     </div>
+     
+     <!-- Newsletter Section -->
+     <div class="w-full md:w-1/4 text-white space-y-2">
+      <h2 class="font-bold text-xl italic text-orange-500">Newsletter</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, voluptatum.</p>
+      <input type="text" placeholder="Your Email" class="p-3 text-black">
+      <button class="bg-orange-500 p-3 hover:bg-transparent hover:border hover:border-orange-500">Subscribe</button>     </div>
+  </div>
+</footer>
+
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("[data-animate='true']");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const animatedElements = entry.target.querySelectorAll("[data-animation]");
+
+        if (entry.isIntersecting) {
+          // Trigger animations
+          animatedElements.forEach((el) => {
+            const animationName = el.dataset.animation;
+            el.style.animationName = animationName;
+            el.style.opacity = "1";
+            el.classList.remove("opacity-0");
+          });
+        } else {
+          // Reset animations
+          animatedElements.forEach((el) => {
+            el.style.animationName = "";
+            el.style.opacity = "0";
+            el.classList.add("opacity-0");
+          });
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+
+function filterCards(category) {
+    const cards = document.querySelectorAll('.menu-card'); // Select all cards
+
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden'); // Show matching cards
+        } else {
+            card.classList.add('hidden'); // Hide non-matching cards
+        }
+    });
+}
+
+  </script>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+ 
+    <script src="dist/js/script.js"></script>
+</body>
+</html>
